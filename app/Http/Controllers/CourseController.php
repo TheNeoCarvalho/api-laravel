@@ -15,17 +15,21 @@ class CourseController extends Controller
      */
     public function index()
     {
-       return view('createCourse');
+       return view('course');
     }
 
+
+    public function form(){
+        return view('createCourse');
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    {
-
+    {   
+        return $request;
     }
 
     /**
