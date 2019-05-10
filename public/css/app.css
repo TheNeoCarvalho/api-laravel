@@ -4,3 +4,16 @@
 .cursos {
 	
 }		
+
+section span {
+	color: #030303;
+	font-size: 22px
+}
+
+section {
+	width: 100%;
+	height: auto;
+	background: #EEE;
+	padding: 10px 20px;
+	margin-top: 10px
+}

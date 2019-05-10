@@ -15,7 +15,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-       return view('course');
+       return view('createCourse');
     }
 
     /**
@@ -25,7 +25,7 @@ class CourseController extends Controller
      */
     public function create(Request $request)
     {
-        return view('reateCourse');
+
     }
 
     /**
