@@ -27,4 +27,9 @@ class HomeController extends Controller
         $res = User::all();
         return view('home', compact('res'));
     }
+
+    public function logout(){
+        auth()->logout();
+        return redirect('course');
+    }
 }

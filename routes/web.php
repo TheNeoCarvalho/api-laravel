@@ -14,11 +14,16 @@ Route::get('/category', 'CategoryController@index')->name('all-category');
 Route::get('/course/create', 'CourseController@form')->name('form-course');
 Route::post('/course/create', 'CourseController@create')->name('create-course');
 
+Route::get('/logout', 'HomeController@logout')->name('logout');
+
 Route::prefix('/admin')->group(function () {
 
-	Route::get('/', 'HomeController@index')->name('admin-home');
-   	Route::get('/course/create', 'CourseController@create')->name('create-course');
-	Route::post('/course/create', 'CourseController@index')->name('create');
+	Route::get('/', 'Admin\HomeController@index')->name('admin-home');
+	Route::get('/course', 'Admin\CourseController@allcourse')->name('course-home');
+   	Route::get('/course/create', 'Admin\CourseController@create')->name('create-course');
+	Route::post('/course/create', 'Admin\CourseController@index')->name('create');
+	Route::get('/course/view', 'Admin\CourseController@view')->name('view-course');
+	Route::get('/course/delete/{id}', 'Admin\CourseController@delete')->name('delete');
 
 });
 	

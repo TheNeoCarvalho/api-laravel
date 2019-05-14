@@ -41,10 +41,18 @@
         <a class="nav-link" href="{{ route('all-courses')}}">Courses</a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    @if (Auth::guest())
+      <div class="form-inline my-2 my-lg-0">
+      <a href="{{ route('login')}}" class="btn btn-outline-success my-2 my-sm-0">Login</a>
+      <a href="{{ route('register')}}" class="btn btn-outline-success my-2 my-sm-0">Cadastro</a>
+    </div>
+    @else
+      <div class="form-inline my-2 my-lg-0">
+      <a href="#" class="my-2 my-sm-0"> {{ Auth::user()->name }}</a> 
+      <a href="{{ route('logout')}}" class="btn btn-outline-success my-2 my-sm-0">Sair</a>
+    </div>
+    @endif
+    
   </div>
 </nav>
         <main class="py-4">

@@ -19,6 +19,7 @@ class CreateCoursesTable extends Migration
             $table->string('description');
             $table->integer('ch');
             $table->double('price', 8,2);
+            $table->string('category');
             $table->timestamps();
         });
     }

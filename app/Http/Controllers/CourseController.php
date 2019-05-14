@@ -15,7 +15,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-       return view('course');
+        $cursos = Course::all();
+        return view('course', compact('cursos'));
     }
 
 
@@ -29,7 +30,10 @@ class CourseController extends Controller
      */
     public function create(Request $request)
     {   
-        return $request;
+        $dados = $request->all();
+        Course::create($dados);
+         return redirect('home');
+
     }
 
     /**

@@ -8,8 +8,8 @@
                 <div class="card-header">{{ __('Register Course') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('form-course') }}">
-                        @csrf_fields()
+                    <form method="POST" action="#">
+                        @csrf
 
                         <div class="form-group row">
                             <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
@@ -18,6 +18,20 @@
                                 <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
 
                                 @error('title')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="ch" class="col-md-4 col-form-label text-md-right">{{ __('Image') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="ch" type="file" class="form-control @error('image') is-invalid @enderror" name="ch" value="{{ old('image') }}" required autocomplete="ch">
+
+                                @error('image')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -38,6 +52,7 @@
                                 @enderror
                             </div>
                         </div>
+
 
                         <div class="form-group row">
                             <label for="ch" class="col-md-4 col-form-label text-md-right">{{ __('CH') }}</label>
