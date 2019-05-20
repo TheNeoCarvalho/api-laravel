@@ -18,7 +18,7 @@ Route::get('/logout', 'HomeController@logout')->name('logout');
 
 Route::prefix('/admin')->group(function () {
 
-	Route::get('/', 'Admin\HomeController@index')->name('home');
+	Route::get('/', 'Admin\HomeController@index')->name('admin-home');
 	Route::get('/course', 'Admin\CourseController@allcourse')->name('course-home');
    	Route::get('/course/create', 'Admin\CourseController@form')->name('form');
 	Route::post('/course/create', 'Admin\CourseController@create')->name('create');

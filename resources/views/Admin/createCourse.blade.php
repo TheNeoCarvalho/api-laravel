@@ -72,7 +72,7 @@
                             <label for="price" class="col-md-4 col-form-label text-md-right">{{ __('Price') }}</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="text" class="form-control @error('price') is-invalid @enderror" name="price" required autocomplete="new-price">
+                                <input id="price" onkeyup="k(this);" type="text" class="form-control @error('price') is-invalid @enderror" name="price" required autocomplete="new-price">
 
                                 @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -104,3 +104,13 @@
     </div>
 </div>
 @endsection
+<script type="text/javascript">
+    function k(i) {
+    var v = i.value.replace(/\D/g,'');
+    v = (v/100).toFixed(2) + '';
+    v = v.replace(".", ",");
+    v = v.replace(/(\d)(\d{3})(\d{3}),/g, "$1.$2.$3,");
+    v = v.replace(/(\d)(\d{3}),/g, "$1.$2,");
+    i.value = v;
+}
+</script>

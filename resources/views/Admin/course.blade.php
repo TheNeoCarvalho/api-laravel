@@ -34,7 +34,14 @@
           </tbody>
         </table>  
 
-
+            <h4>
+            Qnt de usuarios:{{ $userCount }} 
+            Qnt de cursos:{{ $count }} 
+            Soma:{{ $soma }} 
+            Media:{{ $avg }} 
+            Max:{{ $max }} 
+            Min:{{ $min }} 
+           </h4>
 
         
     </div>

@@ -5,9 +5,19 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Course;
+use App\User;
 
 class CourseController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
 	public function index(){
    		return view('Admin/createCourse');
@@ -20,18 +30,43 @@ class CourseController extends Controller
     public function create(Request $request)
     {   
         $dados = $request->all();
+
+        $str = $dados['price'];
+        $str = str_replace('.', '', $str); // remove o ponto
+        $dados['price'] =  str_replace(',', '.', $str); // troca a vírgula por ponto
+
         Course::create($dados);
-         return redirect('Admin/course/view');
+         return redirect('admin/course/view');
 
     }
 
    public function allcourse(){
+      $curso = Course::all();
+      
    		return view('Admin/course');
    }
    
    public function view(){
    		$cursos = Course::all();
-        return view('Admin/course', compact('cursos'));
+      $users = User::all();
+      $userCount = $users->count('id');
+      $count = $cursos->count('ch');
+      $soma = $this->moeda($cursos->sum('price'));
+      $avg = $this->moeda($cursos->avg('price'));
+      $max = $this->moeda($cursos->max('price'));
+      $min = $this->moeda($cursos->min('price'));
+
+        return view('Admin/course', compact('cursos',
+                                            'count',
+                                            'soma',
+                                            'avg',
+                                            'max',
+                                            'min',
+                                            'userCount'));
+   }
+
+   private function moeda($valor){
+      return number_format($valor,2,",",".");
    }
 
    public function update($id){
@@ -59,7 +94,7 @@ class CourseController extends Controller
 
    		$course = Course::find($id);
    		$course->delete();
-   		return redirect('Admin/course/view');
+   		return redirect('admin/course/view');
 
    }
 

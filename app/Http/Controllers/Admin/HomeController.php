@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
 
 class HomeController extends Controller
 {
@@ -20,7 +21,9 @@ class HomeController extends Controller
 
     public function index(){
 
-   		return view('auth/login');
+        $users = User::all();
+    
+   		return view('Admin/home', compact('users'));
 
    }
 }
