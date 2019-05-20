@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row" style="margin:5px">
-
+      <a href="{{ route('form')}}" class="btn btn-primary">Adicionar curso</a>
         <table class="table table-hover">
           <thead>
             <tr>
@@ -26,7 +26,8 @@
                 <td>{{$curso->ch}}</td>
                 <td>{{ number_format($curso->price, 2,",",".")}}</td>
                 <th>
-                  <a class="btn btn-danger" href="{{ route('delete', $curso->id) }}">Deletar</a> <a class="btn btn-success" href="">Editar</a></th>
+                  <a class="btn btn-danger" href="{{ route('delete', $curso->id) }}">Deletar</a> 
+                  <a class="btn btn-success" href="{{ route('update', $curso->id) }}">Editar</a></th>
                </tr>
             @endforeach
             

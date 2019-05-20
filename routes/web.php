@@ -18,10 +18,12 @@ Route::get('/logout', 'HomeController@logout')->name('logout');
 
 Route::prefix('/admin')->group(function () {
 
-	Route::get('/', 'Admin\HomeController@index')->name('admin-home');
+	Route::get('/', 'Admin\HomeController@index')->name('home');
 	Route::get('/course', 'Admin\CourseController@allcourse')->name('course-home');
-   	Route::get('/course/create', 'Admin\CourseController@create')->name('create-course');
-	Route::post('/course/create', 'Admin\CourseController@index')->name('create');
+   	Route::get('/course/create', 'Admin\CourseController@form')->name('form');
+	Route::post('/course/create', 'Admin\CourseController@create')->name('create');
+   	Route::get('/course/update/{id}', 'Admin\CourseController@update')->name('update');
+   	Route::post('/course/update/{id}', 'Admin\CourseController@update_data')->name('update_data');
 	Route::get('/course/view', 'Admin\CourseController@view')->name('view-course');
 	Route::get('/course/delete/{id}', 'Admin\CourseController@delete')->name('delete');
 
