@@ -35,22 +35,23 @@
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('all-category')}}">Categories</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="{{ route('all-courses')}}">Courses</a>
       </li>
     </ul>
-    @if (Auth::guest())
+     @if (Auth::guest())
       <div class="form-inline my-2 my-lg-0">
-      <a href="{{ route('login')}}" class="btn btn-outline-success my-2 my-sm-0">Login</a>
-      <a href="{{ route('register')}}" class="btn btn-outline-success my-2 my-sm-0">Cadastro</a>
-    </div>
+        <a href="{{ route('login')}}" class="btn btn-outline-success my-2 my-sm-0">Login</a>
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <a href="{{ route('register')}}" class="btn btn-outline-success my-2 my-sm-0">Cadastro</a>
+     </div>
     @else
       <div class="form-inline my-2 my-lg-0">
-      <a href="#" class="my-2 my-sm-0"> {{ Auth::user()->name }}</a> 
-      <a href="{{ route('logout')}}" class="btn btn-outline-success my-2 my-sm-0">Sair</a>
-    </div>
+        <a href="#" class="my-2 my-sm-0">{{ Auth::user()->name }} </a> 
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <a href="{{ route('logout')}}" class="btn btn-outline-success my-2 my-sm-0"> Sair</a>
+      </div>
     @endif
     
   </div>

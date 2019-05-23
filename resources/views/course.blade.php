@@ -5,9 +5,9 @@
     <div class="row" style="margin:5px">
 
         @foreach ($cursos as $curso)
-        <div class="col-md-4">
+        <div class="col-md-4" style="margin-bottom: 20px">
             <div class="card" style="width: 18rem;">
-              <img src="{{ asset('img/cursos/react.png') }}" class="card-img-top" alt="...">
+              <img src="{{ asset('img/curso.jpg') }}" class="card-img-top" alt="...">
               <div class="card-body">
                 <h5 class="card-title">{{$curso->title}}</h5>
                 <p class="card-text">

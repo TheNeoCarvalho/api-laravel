@@ -13,6 +13,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
@@ -35,22 +36,26 @@
         <a class="nav-link" href="/admin">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('all-category')}}">Categories</a>
+        <a class="nav-link" href="{{ route('view-category')}}">Categories</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('all-courses')}}">Courses</a>
+        <a class="nav-link" href="{{ route('view-course')}}">Courses</a>
       </li>
     </ul>
     @if (Auth::guest())
       <div class="form-inline my-2 my-lg-0">
-      <a href="{{ route('login')}}" class="btn btn-outline-success my-2 my-sm-0">Login</a>
-      <a href="{{ route('register')}}" class="btn btn-outline-success my-2 my-sm-0">Cadastro</a>
-    </div>
+        <a href="{{ route('login')}}" class="btn btn-outline-success my-2 my-sm-0">Login</a>
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <a href="{{ route('register')}}" class="btn btn-outline-success my-2 my-sm-0">Cadastro</a>
+     </div>
     @else
       <div class="form-inline my-2 my-lg-0">
-      <a href="#" class="my-2 my-sm-0"> {{ Auth::user()->name }}</a> 
-      <a href="{{ route('logout')}}" class="btn btn-outline-success my-2 my-sm-0">Sair</a>
-    </div>
+        <a href="#" class="my-2 my-sm-0">{{ Auth::user()->name }} </a> 
+      </div>
+      <div class="form-inline my-2 my-lg-0">
+        <a href="{{ route('logout')}}" class="btn btn-outline-success my-2 my-sm-0"> Sair</a>
+      </div>
     @endif
     
   </div>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Course;
-use App\User;
+use App\Category;
 
 class CourseController extends Controller
 {
@@ -24,7 +24,8 @@ class CourseController extends Controller
    }
 
    public function form(){
-      return view('Admin/createCourse');
+      $category = Category::all();
+      return view('Admin/createCourse', compact('category'));
    }
 
     public function create(Request $request)
@@ -32,7 +33,7 @@ class CourseController extends Controller
         $dados = $request->all();
 
         $str = $dados['price'];
-        $str = str_replace('.', '', $str); // remove o ponto
+        $str = str_replace('.', '', $str);
         $dados['price'] =  str_replace(',', '.', $str); // troca a vírgula por ponto
 
         Course::create($dados);
@@ -41,51 +42,43 @@ class CourseController extends Controller
     }
 
    public function allcourse(){
-      $curso = Course::all();
-      
-   		return view('Admin/course');
+
+   		return view('Admin/course', compact('curso'));
+
    }
    
    public function view(){
-   		$cursos = Course::all();
-      $users = User::all();
-      $userCount = $users->count('id');
-      $count = $cursos->count('ch');
-      $soma = $this->moeda($cursos->sum('price'));
-      $avg = $this->moeda($cursos->avg('price'));
-      $max = $this->moeda($cursos->max('price'));
-      $min = $this->moeda($cursos->min('price'));
 
-        return view('Admin/course', compact('cursos',
-                                            'count',
-                                            'soma',
-                                            'avg',
-                                            'max',
-                                            'min',
-                                            'userCount'));
-   }
+   		$cursos = Course::orderBy('title','ASC')->paginate(5);
+      //$cursos = Course::all();
+      $curso = Course::all();
+      $id = $curso[0]->category;
+      return view('Admin/course', compact('cursos','curso','id'));
 
-   private function moeda($valor){
-      return number_format($valor,2,",",".");
    }
 
    public function update($id){
 
-      //$curso = Course::where('id', $id)->get();
       $curso = Course::find($id);
-      //return redirect()->route('update');
-      return view('Admin/updateCourse', compact('curso'));
+      $category = $curso->category;
+      $categories = Category::all();
+      $nomeCategory = Category::where('id', $category)->get();
+      $nome = $nomeCategory;
+
+      return view('Admin/updateCourse', compact('curso','categories','category','nome'));
 
    }
 
    public function update_data(Request $req, $id){
+      
       $curso = $req->all();
 
       $str = $curso['price'];
-      $str = str_replace('.', '', $str); // remove o ponto
-      $curso['price'] =  str_replace(',', '.', $str); // troca a vírgula por ponto
+      $str = str_replace('.', '', $str); 
+      $curso['price'] =  str_replace(',', '.', $str);
 
       Course::find($id)->update($curso);
+      
       return redirect('admin/course/view');
 
    }
@@ -94,7 +87,8 @@ class CourseController extends Controller
 
    		$course = Course::find($id);
    		$course->delete();
-   		return redirect('admin/course/view');
+   		
+      return redirect('admin/course/view');
 
    }
 

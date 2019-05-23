@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app-admin')
 
 @section('content')
 <div class="container">
@@ -86,7 +86,12 @@
                             <label for="category" class="col-md-4 col-form-label text-md-right">{{ __('Category') }}</label>
 
                             <div class="col-md-6">
-                                <input id="category" type="text" class="form-control" name="category" required>
+                                <select id="category" class="form-control" name="category" required>
+                                    @foreach ($category as $cat)
+                                    <option value="{{ $cat->id }}">{{ $cat->name}}</option>
+                                    @endforeach
+                                </select>
+                               
                             </div>
                         </div>
 
